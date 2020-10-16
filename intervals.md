@@ -1,4 +1,4 @@
-<h1>Intervals111</h1><br>
+<h1>Intervals</h1><br>
 <a href = "insert-interval">Insert Interval</a><br>
 <a href = "merge-intervals">Merge Intervals</a><br>
 <a href = "non-overlapping-intervals">Non-overlapping Intervals</a><br>
