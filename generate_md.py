@@ -1,58 +1,53 @@
 # -*- coding: utf-8 -*-
-print("Введите имя файла решения: ")
-filename = input()
-print("Введите имя файла .md: ")
-output = input()
-print("Введите имя группы задач (Intervals, Lists):")
-tasktype = input()
-file=open(filename, "r")
-code=[]
-number = ''
-title = ''
-ifdot = False
-firstline = file.readline()
-firstline = firstline[1:]
-for symb in firstline:
-    if symb != '.' and ifdot != True:
-        number += symb
-    if symb == '.':
-        ifdot = True
-        number += symb
-    if symb != '.' and ifdot == True:
-        title += symb
-http = file.readline()
-http = http[1:]
-file.readline()
-string=file.readline()
-while(string != ""):
-    code.append(string)
-    string=file.readline()
-words = title.split()
-newtitle = ''
-for word in words:
-    newtitle += word.lower() + '-'
-newtitle = newtitle[:-1]
-file.close()
-file_output=open(output, "a")
-file_output.write('\n---\n')
-file_output.write('## {}\n'.format(title.rstrip()))
-file_output.write('<h5> Problem {} <a href="{}">Link to the page </a><br></h5>\n'.format(number,http.rstrip()))
-file_output.write('\n```python\n')
-for item in code:
-    file_output.write(item.rstrip() + '\n')
-file_output.write('```\n')
-file_output.close()
-afterfile = open(output, 'r')
-data =[] 
-data.append('<a href = "#{}">{}</a><br>\n'.format(newtitle,title.strip()))
-line = afterfile.readline()
-while line != "":
-    data.append(line)
-    line = afterfile.readline()
-afterfile.close()
-file_output_after=open(output, "w")
-file_output_after.write('<h1>{}</h1><br>\n'.format(tasktype))
-for line in data:
-    if not('<h1>' in line):
-        file_output_after.write(line)
-file_output_after.close()
+class LeetCodeSolution:
+    def __init__ (self, title, link, code):
+        self.number = title.split('. ')[0].lstrip('#')
+        self.title = title.split('. ')[1].rstrip('\n')
+        self.md_title = "# {}".format(self.title)
+        self.link = link[1:]
+        self.special_link = "+ [{}](#{})".format(self.title, self.link[30:].rstrip('/\n'))
+        self.md_link = 'Problem {}. <a href="{}">Link to the page </a>'.format(self.number, link[1:].rstrip('\n'))
+        self.code = "``` pytnon \n {}\n ```".format('\n'.join(map(lambda x: x.strip('\n')[4:], code)))
+    
+    
+    def get_md_solution(self):
+        return "{}\n\n[comment]: <> (Stop)\n\n{}\n\n{}\n\n{}".format(self.special_link, self.md_title, self.md_link, self.code)
+        
+
+def read_all_lines_from(filename):
+    file = open(filename)
+    result = file.readlines()
+    file.close()
+    return result
+
+
+def write(filename, data):
+    file = open(filename,"w")
+    file.write(data)
+    file.close
+
+
+def generate_md(input,output):
+    in_new = read_all_lines_from(input)
+    newsource = LeetCodeSolution(in_new[0], in_new[1], in_new[3:])
+    in_old = read_all_lines_from(output)
+    write(output, merge_solutions(in_old, newsource.get_md_solution()))
+
+
+def merge_solutions(old, new):
+    old_splitted = ['', '']
+    ifStop = False
+    for string in old:
+        if '[comment]: <> (Stop)' in string:
+            ifStop = True
+            continue
+        if ifStop:
+            old_splitted[1] += string
+        else:
+            old_splitted[0] += string
+    if len(old_splitted) == 1:
+        return new
+    return '{}{}{}'.format(old_splitted[0], new, old_splitted[1])
+
+
+generate_md(input('Введите имя файла решения .py'), input('Введите имя генерируемого файла .md'))
