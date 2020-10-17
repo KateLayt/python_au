@@ -20,7 +20,7 @@
 
 Problem 160. <a href="https://leetcode.com/problems/intersection-of-two-linked-lists/">Link to the page </a>
 
-``` pytnon 
+``` python 
  def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
     secondA = headA
     secondB = headB
@@ -51,7 +51,7 @@ Problem 160. <a href="https://leetcode.com/problems/intersection-of-two-linked-l
 
 Problem 141. <a href="https://leetcode.com/problems/linked-list-cycle/">Link to the page </a>
 
-``` pytnon 
+``` python 
  def hasCycle(self, head: ListNode) -> bool:
     List = []
     sectime = 0
@@ -105,7 +105,7 @@ Problem 142. <a href="https://leetcode.com/problems/linked-list-cycle-ii/">Link 
 
 Problem 19. <a href="https://leetcode.com/problems/remove-nth-node-from-end-of-list/">Link to the page </a>
 
-``` pytnon 
+``` python 
  def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
     List = []
     ReversedNewHead = None
@@ -125,7 +125,7 @@ Problem 19. <a href="https://leetcode.com/problems/remove-nth-node-from-end-of-l
 
 Problem 21. <a href="https://leetcode.com/problems/merge-two-sorted-lists/">Link to the page </a>
 
-``` pytnon 
+``` python 
  def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
     List1 = []
     List2 = []
@@ -169,7 +169,7 @@ Problem 21. <a href="https://leetcode.com/problems/merge-two-sorted-lists/">Link
 
 Problem 234. <a href="https://leetcode.com/problems/palindrome-linked-list/">Link to the page </a>
 
-``` pytnon 
+``` python 
  def isPalindrome(self, head: ListNode) -> bool:
     string = []
     while head:
@@ -185,7 +185,7 @@ Problem 234. <a href="https://leetcode.com/problems/palindrome-linked-list/">Lin
 
 Problem 876. <a href="https://leetcode.com/problems/middle-of-the-linked-list/">Link to the page </a>
 
-``` pytnon 
+``` python 
  def middleNode(self, head: ListNode) -> ListNode:
     List = []
     secondhead = head
@@ -210,7 +210,7 @@ Problem 876. <a href="https://leetcode.com/problems/middle-of-the-linked-list/">
 
 Problem 206. <a href="https://leetcode.com/problems/reverse-linked-list/">Link to the page </a>
 
-``` pytnon 
+``` python 
  def reverseList(self, head: ListNode) -> ListNode:
     NewList = None
     while head:
