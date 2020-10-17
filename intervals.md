@@ -10,7 +10,7 @@
 
 Problem 57. <a href="https://leetcode.com/problems/insert-interval/">Link to the page </a>
 
-``` pytnon 
+``` python 
  def insert(self, Intervals, NewInterval):
     ShallBeRemoved = []
     for interval in Intervals:
@@ -45,7 +45,7 @@ Problem 57. <a href="https://leetcode.com/problems/insert-interval/">Link to the
 
 Problem 56. <a href="https://leetcode.com/problems/merge-intervals/">Link to the page </a>
 
-``` pytnon 
+``` python 
  def merge(self, Intervals):
     MergedIntervals = []
     AlreadyMerged = []
@@ -109,7 +109,7 @@ Problem 56. <a href="https://leetcode.com/problems/merge-intervals/">Link to the
 
 Problem 435. <a href="https://leetcode.com/problems/non-overlapping-intervals/">Link to the page </a>
 
-``` pytnon 
+``` python 
  def eraseOverlapIntervals(self, Intervals) -> int:
     Num_of_deleted = 0
     max_num = [0,-1]
