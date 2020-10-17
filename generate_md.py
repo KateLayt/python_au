@@ -7,7 +7,7 @@ class LeetCodeSolution:
         self.link = link[1:]
         self.special_link = "+ [{}](#{})".format(self.title, self.link[30:].rstrip('/\n'))
         self.md_link = 'Problem {}. <a href="{}">Link to the page </a>'.format(self.number, link[1:].rstrip('\n'))
-        self.code = "``` pytnon \n {}\n ```".format('\n'.join(map(lambda x: x.strip('\n')[4:], code)))
+        self.code = "``` python \n {}\n ```".format('\n'.join(map(lambda x: x.strip('\n')[4:], code)))
     
     
     def get_md_solution(self):
