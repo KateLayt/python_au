@@ -77,5 +77,7 @@ class MyLinkedList:
         string = ""
         curr_node = self.head
         while curr_node != None:
-            string += str(curr_node.val)
+            string += str(curr_node.val) + "<->"
             curr_node = curr_node.next
+        string = string[:-3]
+        return string
