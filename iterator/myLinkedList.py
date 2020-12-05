@@ -73,8 +73,9 @@ class MyLinkedList:
         curr_node = curr_node.prev
         curr_node.next = tmp_node.next
 
-    def printList(self):
+    def __str__(self):
+        string = ""
         curr_node = self.head
         while curr_node != None:
-            print(curr_node.val, "\n")
+            string += str(curr_node.val)
             curr_node = curr_node.next
