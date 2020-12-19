@@ -26,30 +26,17 @@ def read_all_lines_from(filename):
 
 def write_with_title(filename, data):
     file = open(filename,"w")
-    main_title = ''
-    upper_next = True
-    for letter in filename:
-        if upper_next:
-            main_title += letter.upper()
-            upper_next = False
-            continue
-        if letter == '.':
-            break
-        if letter == '-':
-            main_title += ' '
-            upper_next = True
-            continue
-        main_title += letter
+    main_title = sys.argv[3]
     file.write("# {}\n".format(main_title))
     file.write(data)
     file.close
 
 
-def generate_md(input_filename,output_filename):
-    in_new = read_all_lines_from(input_filename)
+def main():
+    in_new = read_all_lines_from(sys.argv[1])
     newsource = LeetCodeSolution(in_new[0], in_new[1], in_new[3:])
-    in_old = read_all_lines_from(output_filename)
-    write_with_title(output_filename, merge_solutions(in_old, newsource.get_md_solution()))
+    in_old = read_all_lines_from(sys.argv[2])
+    write_with_title(sys.argv[2], merge_solutions(in_old, newsource.get_md_solution()))
 
 
 def merge_solutions(old, new):
@@ -73,4 +60,5 @@ def merge_solutions(old, new):
     return '{}{}{}'.format(old_splitted[0], new, old_splitted[1])
 
 
-generate_md(input('Введите имя файла решения .py'), input('Введите имя генерируемого файла .md'))
+if __name__ == '__main__':
+    unittest.main()
