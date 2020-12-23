@@ -1,7 +1,7 @@
 import unittest
 from generate_md import *
 
-class testing(unittest.TestCase):
+class TestGenerator(unittest.TestCase):
     def test_read_all_lines_from(self):
         result = read_all_lines_from("test.txt")
         expect = ['#111. TaskName\n', '#https://leetcode.com/problems/\n', 'class Solution:']
