@@ -1,7 +1,7 @@
 import unittest
 from myLinkedList import MyLinkedList
 
-class testing(unittest.TestCase):
+class TestMyLinkedList(unittest.TestCase):
     def test_get(self):
         a = MyLinkedList()
         a.addAtHead(1)
