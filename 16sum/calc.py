@@ -87,19 +87,10 @@ def isnumber(char):
 
 
 def makenumber(char):
-    if char.isdigit():
-        number = ord(char) - 48
-    else:
-        number = ord(char) - 55
-    return number
+    return ord(char) - ord('A') + 10 if char >= 'A' and char <= 'F' else ord(char) - ord('0') 
 
-
-def makechar(number):
-    if number < 10:
-        char = str(number)
-    else:
-        char = chr(number + 55)
-    return char
+def makechar(num):
+    return chr(ord('A') + num - 10) if num > 9 else chr(ord('0') + num)
 
 
 def isUpper(string):
