@@ -2,7 +2,7 @@ import unittest
 from calc import HexNumber
 
 
-class testing(unittest.TestCase):
+class TestHexNumber(unittest.TestCase):
 
     def test_is_correct_string_low(self):
         self.assertEqual("", str(HexNumber("abc")))
