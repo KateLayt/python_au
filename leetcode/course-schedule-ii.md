@@ -9,31 +9,62 @@
 https://leetcode.com/problems/course-schedule-ii/
 
 ``` python 
- def __init__(self):
-    self.visited = []
-    self.nodelist = []
+    def __init__(self):
+        self.examing = []
+        self.alreadyTested = []
+        self.canBeFirst = []
+        self.orderedArray = []
+        
 
-def depthsearchfrom(self, node, prerequisites):
-    self.visited.append(node)
-    for list in prerequisites:
-        if list[1] == node and not (list[0] in self.visited):
-            self.depthsearchfrom(list[0], prerequisites)
-
-def extendedsearchfrom(self, node, prerequisites):
-    for list in prerequisites:
-        if list[1] == node:
-            if not (list[0] in self.nodelist):
-                self.nodelist.append(list[0])
-            self.extendedsearchfrom(list[0], prerequisites)
-
-def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
-    for course in range(numCourses):
-        self.visited = []
-        self.depthsearchfrom(course, prerequisites)
-        if len(self.visited) == numCourses:
-            start = course
-            self.nodelist.append(start)
-            self.extendedsearchfrom(start, prerequisites)
-            break
-    return self.nodelist
+    def canBeVisited(self, node, pres, nums):
+        if node in self.alreadyTested:
+            return True
+        for pre in pres:
+            if node == pre[0]:
+                if node in self.canBeFirst:
+                    self.canBeFirst.remove(node)
+                if not(pre[1] in self.examing):
+                    self.examing.append(node)
+                    if not(self.canBeVisited(pre[1], pres, nums)):
+                        return False
+                else:
+                    return False
+        self.examing = []
+        self.alreadyTested.append(node)
+        return True
+ 
+ 
+    def depthSearch(self, node, pres):
+        self.orderedArray.append(node)
+        for pre in pres:
+            canAdd = True
+            if pre[1] == node:
+                for newpre in pres:
+                    if (pre[0] == newpre[0]) and not(newpre[1] in self.orderedArray):
+                        canAdd = False
+                        break
+                if canAdd:
+                    self.depthSearch(pre[0], pres)
+                    
+                
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        if prerequisites == []:
+            return True
+        for pre in prerequisites:
+            if pre[0] == pre[1]:
+                return False
+        for num in range(numCourses):
+            if not(self.canBeVisited(num, prerequisites, numCourses)):
+                return False
+        return True
+       
+       
+    def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
+        self.canBeFirst = [node for node in range(numCourses)]
+        if not(self.canFinish(numCourses, prerequisites)):
+            return []
+        for node in self.canBeFirst:
+            if not(node in self.orderedArray):
+                self.depthSearch(node, prerequisites)
+        return self.orderedArray
  ```
